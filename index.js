@@ -5,7 +5,7 @@ var app = require('./app');
 
 User.sync()
     .then(function () {
-        return Page.sync();
+        return Page.sync({force:true});
     })
     .then(function () {
         app.listen(3001, function () {

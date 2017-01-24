@@ -70,7 +70,7 @@ describe('Page model', function () {
   //       done()
   //     })
   //     .catch(done);
-    
+
   //   Page.create({
   //         title: 'test_title2',
   //         content: 'test_content',
@@ -113,7 +113,7 @@ describe('Page model', function () {
     })
 
     it('errors without title', function(done) {
-      page.validate() // 
+      page.validate() //
       .then(function(err){
         expect(err).to.exist;
         expect(err.errors).to.exist;
@@ -132,10 +132,10 @@ describe('Page model', function () {
       });
     });
 
-    it.only('errors given an invalid status', function() {
+    it('errors given an invalid status', function() {
       var failedStatus = function(page) {
         if (page.status !== "open" || page.status !== "closed") {
-            return true; 
+            return true;
         }
       }
 
@@ -144,7 +144,19 @@ describe('Page model', function () {
   });
 
   describe('Hooks', function () {
-    it('it sets urlTitle based on title before validating');
-  });
+    var page = Page.build({
+        title: 'test title',
+        content: 'test_content'
+    });
 
+    it('it sets urlTitle based on title before validating', function(done){
+
+        page.save()
+        .then(function(page){
+            expect(page.urlTitle).to.exist;
+            done();
+        })
+        .catch(done)
+    });
+  });
 });
