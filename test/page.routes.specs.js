@@ -72,7 +72,9 @@ describe('http requests', function () {
         agent
         .post('/wiki')
         .send({
-            urlTitle: 'pagecreated'
+            urlTitle: 'pagecreated',
+            authorEmail: 'hi@gmai.com',
+            authorName: 'Pablo'
         })
         expect(302);
         done();
